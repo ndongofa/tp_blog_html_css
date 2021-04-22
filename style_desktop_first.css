@@ -1,0 +1,421 @@
+
+
+
+/******************GENERAL**************************************/
+
+
+* {
+    box-sizing: border-box; /*Pour que les marges prennent en*/
+}        /*compte les padding et les bordures*/                   
+
+p::first-letter {
+    font-size: 2em;
+}
+
+blockquote {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 25px ;
+    position: relative;
+}
+
+blockquote::before {
+    content: '“';
+    position: absolute;
+    top: -20px;
+    left: 1px;
+    font-size: 60px;
+    line-break: 1.4rem;
+}
+
+blockquote::after {
+    content: '”';
+    position: absolute;
+    bottom: -50px;
+    right: 5px;
+    font-size: 60px;
+    line-break: 1.4rem;
+}
+
+
+
+
+
+
+
+/******************LE BODY**************************************/
+
+
+
+body, html {
+    margin: 5px; /*Pour éviter que body mette une marge par défaut*/
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.87);
+    line-height: 1.6;  /*line-height en pixel divisé par font-size en pixel*/
+    font-weight: 400;
+    
+} 
+
+
+
+
+/******************LE TOP BAR**************************************/
+
+
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: #FFFFFF;
+    padding: 30px; /*31px en haut et en bas, 87px à gauche et à droite*/
+    z-index: 3;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+
+}
+
+.topbar nav {
+  float: left; 
+}
+
+.menu-item {
+    color: #9F9F9F;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0 53px; /*0px en haut et en bas, 53px à gauche et à droite Si on met un margin au lieu d'un padding, seul le serau survolable texte sera*/
+    transition: color .3s;
+}                     
+                    
+
+.menu-item:hover, .menu-item.active {
+    color: #000;
+}
+
+
+
+.topbar .social {
+  float: right;
+}
+
+.topbar .social a {
+    margin: 0 15px;
+    opacity: 0.5;
+    transition: opacity .3s;
+}
+
+.topbar .social a:hover {
+    opacity: 1;
+}
+
+
+
+/******************LA BANIERRE**************************************/
+
+.banniere {              /*En dispay:bloc donc pas besoin de préciser la largeur, 100% par defaut*/
+    background: no-repeat center center / cover url("img/img_header.jpg");  /*Le background-size:cover permet à l'image d'occuper toute l'espace disponible*/
+    height: 427px;           /*Le cover associé au fixed donne un comportement assez bizarre à l'image quand la taille de fenêtre change*/
+
+}
+
+
+.body {
+    display: flex;
+}
+
+
+
+
+/******************LE MAIN**************************************/
+
+.main {
+    z-index: 2;
+    position: relative;                   /*L'utilisation des pixels n'est pas adapté à notre situation les dimentions des bloc se réajuste de façon pas cordonnéé selon la taille de la fenêtre L'utilisation des pourcentages ou d'un calc est le mieux adapté */
+    width: calc(100% - 250px);              
+    background-color: #FFFFFF; 
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+}
+
+/******************LES ARTICLES**************************************/
+
+
+
+.container {
+    margin: 0 15px;
+    max-width: 1170px; 
+   
+}
+
+
+.article {
+    position: relative;
+    margin: 50px 0;
+    padding-left: 333px ;
+     
+}
+
+.article-img {
+    position: absolute;
+    left: 0;
+    top: 0;   
+    width: 308px;
+    margin-right: 25px;
+}
+
+.article-img {
+    transition: .5s;
+    
+}
+
+.article-img:hover {
+    animation: fun .3s reverse forwards;
+}
+
+
+.article-img img {
+    width: 100%;
+    height: auto;
+}
+
+@keyframes fun {
+    0% {
+        transform:scale(1) rotate(0deg);
+    }
+
+    100% {
+        transform:scale(1.1) rotate(10deg);
+    }  
+}
+
+
+.article-date {
+    font-weight: 300;  /*valeur correspondant à celui en pixel*/
+    color:rgba(0, 0, 0, 0.6);
+    margin-bottom: 5px;
+}
+
+.article-title {
+    font-size: 2.25rem; /*police relativisée sur notre police de départ afin que ça soit proportionel au reste quand on zoom*/
+    line-height: 1.1;
+    font-family:"Cardo", serif ; /*Par defaut Cardo si non serif*/
+    margin: 0 0 15px 0 ;
+}
+
+.article-title::after {
+    content:'';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background:black;
+}
+
+.article a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.article a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+/******************LE SIDEBAR**************************************/
+
+.sidebar {  
+    font-size: 17px;
+    z-index: 1;
+    position: relative;                 /*L'utilisation des pixels n'est pas adapté à notre situation*/
+    width: 250px; 
+    padding: 40px;                 /*les dimentions des bloc se réajuste de façon pas cordonnéé selon la taille de la fenêtre*/
+    background-color: #FBFBFB;  /*L'utilisation des pourcentages ou d'un calc est le mieux adapté*/
+
+}  
+
+.sidebar ul {
+    margin: 0;
+    padding: O;
+    list-style: none;
+}
+
+.sidebar a {
+    padding: 6px 0;
+}
+
+.sidebar a:first-child {
+    padding-top: 0;
+}
+
+.sidebar a:last-child {
+    padding-bottom: 0;
+}
+
+.sidebar a {
+    color: #9F9F9F;
+    text-decoration: none;
+}
+
+.sidebar li::after {
+    content: attr(data-count);
+    background: gray;
+    width: 25px;
+    height: 25px;
+    float: right;
+    text-align: center;
+    color: #FFFFFF;
+    border-radius: 50px;
+
+
+}
+
+
+.sidebar a:hover {
+    color: #000000;
+}
+.sidebar-title {
+    font-size: 30px;
+    line-height: 40px;
+    color:#000;
+    margin: 15px 0;
+}
+
+.sidebar-title:first-child {
+    margin-top: 0;
+}
+
+
+.sidebar hr {
+    border: none;
+    background: #C4C4C4;
+    height: 1px;
+    margin: 50px 0;
+}
+
+
+
+
+
+
+/******************LE FOOTER**************************************/
+
+
+.footer {
+    clear: both;
+}
+
+
+
+.important {
+    font-size: 1.2em;
+    color: gold;
+}
+
+
+/*@keyframes slideDown {
+
+    0% {
+        transform: sclae(1) translateY(200px);
+    }
+
+    100% {
+        transform: sclae(2) translateY(0);
+    }
+
+}
+
+.test0 {
+    height: 500px;
+    display: inline;
+}
+
+.test span {
+    background: yellow;
+    color: tomato;
+    padding: 10px;
+    border-radius: 50px;
+    transform: translate(50%, -50%);
+    
+}
+
+.test1 span {
+    background: red;
+    color: yellow;
+    padding: 10px;
+    border-radius: 50px;
+}*/
+
+
+
+/******************MEDIA QUERY**************************************/
+
+
+@media screen and (max-width: 1220px) {
+    .body {
+        display: block;
+    }
+    .main {
+       width: 100%; 
+    }
+
+    .main .container {
+        overflow: hidden;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+}
+
+
+@media screen and (max-width: 960px) {
+
+    .container {
+        padding: 0 20px;
+    }
+    .article {
+        padding-left: 0;
+    }
+
+    .article-img {
+        position: static;
+        margin-bottom: 1rem;
+        display: block;
+        width: 100%;
+    }
+
+}
+
+
+@media screen and (max-width: 860px) {
+
+    .topbar {
+        position: absolute;
+        text-align: center;
+    }
+
+    .topbar nav {
+        float: none;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .topbar .social {
+        float: none;
+        text-align: center;
+    }
+
+    .topbar nav a {
+        display: inline-block;
+        margin: 0 20px 5px 20px;
+        white-space: nowrap;
+    }
+
+}
+
+
+
+
+
